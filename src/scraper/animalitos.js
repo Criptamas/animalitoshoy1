@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 const URL = "https://loteriadehoy.com/animalitos/resultados/";
 
 async function getResults() {
-  const response = await axios.get("URL_DE_LOTERIADEHOY", {
+  const response = await axios.get(URL, {
     headers: {
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
       Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
