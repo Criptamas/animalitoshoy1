@@ -1,9 +1,8 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const URL = "https://loteriadehoy.com/animalitos/resultados/";
+const url = "https://www.loteriadehoy.com/animalitos/resultados/";
 
-const url = "https://www.loteriadehoy.com";
 async function getResults() {
   const response = await axios.get(url, {
     headers: {
@@ -14,7 +13,7 @@ async function getResults() {
     timeout: 15000,
   });
 
-  const $ = cheerio.load(data);
+  const $ = cheerio.load(response.data);
 
   const results = [];
   let currentLottery = null;
@@ -41,10 +40,6 @@ async function getResults() {
       const imageSrc = container.prev(".circle").find("img").attr("src");
 
       const image = imageSrc ? `https://loteriadehoy.com${imageSrc}` : null;
-      console.log({
-        animal,
-        image,
-      });
 
       results.push({
         lottery: currentLottery,
